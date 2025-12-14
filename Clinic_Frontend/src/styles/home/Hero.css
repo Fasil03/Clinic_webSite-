@@ -1,0 +1,147 @@
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 80vh;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: #5d6d7e;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.hero-button {
+  display: inline-block;
+  background: #3498db;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 2px solid #3498db;
+}
+
+.hero-button:hover {
+  background: white;
+  color: #3498db;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+}
+
+.hero-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  transition: transform 0.5s ease;
+}
+
+.hero-image:hover img {
+  transform: scale(1.03);
+}
+
+/* Hero Features */
+.hero-features {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  flex: 1;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: #3498db;
+  min-width: 40px;
+}
+
+.feature-item h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.feature-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  
+  .hero-features {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .hero-button {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .feature-item {
+    padding: 1.2rem;
+  }
+}

@@ -1,0 +1,185 @@
+/* ===== BASE HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 32px;
+  color: var(--text);
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ===== SCROLL EFFECT ===== */
+.header-scrolled {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== PAGE COLORS ===== */
+
+/* HOME – calm medical blue */
+.page-home.header-scrolled {
+  background: rgba(30, 136, 229, 0.75);
+  color: #ffffff;
+}
+
+/* SERVICES – healing green */
+.page-services.header-scrolled {
+  background: rgba(46, 125, 50, 0.78);
+  color: #ffffff;
+}
+
+/* CONTACT – trust teal */
+.page-contact.header-scrolled {
+  background: rgba(0, 121, 107, 0.8);
+  color: #ffffff;
+}
+
+/* DEFAULT */
+.page-default.header-scrolled {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Ensure links stay readable */
+.header a {
+  color: inherit;
+}
+
+/* ===== LOGO ===== */
+.logo img {
+  height: 48px;
+}
+
+/* ===== NAV ===== */
+.nav ul {
+  display: flex;
+  gap: 26px;
+  list-style: none;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* ACTIVE LINK */
+.nav ul li.active a {
+  font-weight: 700;
+}
+
+/* ===== ACTIONS ===== */
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ===== MOBILE ===== */
+.menu-btn {
+  display: none;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+
+/* ✅ Color response when content reaches header */
+.header-scrolled {
+  background: rgba(18, 130, 180, 0.92); /* clinic blue */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* ✅ Dark mode compatibility */
+[data-theme="dark"] .header-scrolled {
+  background: rgba(10, 80, 130, 0.92);
+}
+/* ===== HOVER COLOR RESPONSE (NAV INTERACTION) ===== */
+
+/* When hovering anywhere on header */
+.header:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* When hovering nav area */
+.header:hover .nav {
+  backdrop-filter: blur(20px);
+}
+
+/* Link hover color emphasis (clinic friendly) */
+.nav ul li a:hover {
+  color: #2279b8; /* soft clinical blue-white */
+}
+
+/* Glow underline more visible on hover */
+.nav ul li a:hover::after {
+  background: rgba(10, 80, 130, 0.92);
+}
+
+/* Theme-aware hover */
+[data-theme="dark"] .header:hover {
+  background: rgba(18, 130, 180, 0.65);
+}
+
+[data-theme="dark"] .nav ul li a:hover {
+  
+  color: rgba(10, 80, 130, 0.92);
+}
+
+
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 70%;
+    left: 65%;
+    width: 30%;
+    background: inherit;
+    backdrop-filter: blur(18px);
+  }
+
+  .nav.open {
+    display: block;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0;
+    align-items: center;
+  }
+}
+
+/* Prevent content hiding */
+body {
+  scroll-padding-top: 90px;
+}

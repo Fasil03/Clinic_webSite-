@@ -1,0 +1,102 @@
+/* Services Section */
+.services-section {
+  padding: 5rem 2rem;
+  background: #f8f9fa;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.services-section h2:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #e74c3c;
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Loading and Empty States */
+.services-section .loading,
+.services-section .no-services {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  background: white;
+  border-radius: 15px;
+  grid-column: 1 / -1;
+}
+
+.services-section .loading {
+  color: #3498db;
+  font-style: italic;
+}
+
+.services-section .no-services {
+  color: #e74c3c;
+  border: 2px dashed #e74c3c;
+}
+
+/* See All Button */
+.services-see-all {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.see-all-button {
+  display: inline-block;
+  background: transparent;
+  color: #3498db;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid #3498db;
+}
+
+.see-all-button:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 3rem 1rem;
+  }
+  
+  .services-section h2 {
+    font-size: 2rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

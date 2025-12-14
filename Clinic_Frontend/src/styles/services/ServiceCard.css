@@ -1,0 +1,191 @@
+/* Service Card */
+.service-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 5px solid #3498db;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-top-color: #e74c3c;
+}
+
+.service-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #3498db, #e74c3c);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover:before {
+  transform: scaleX(1);
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #3498db20, #e74c3c20);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3498db;
+}
+
+.service-card h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.service-description {
+  color: #5d6d7e;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Service Price */
+.service-price {
+  background: #f8f9fa;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-left: 3px solid #27ae60;
+}
+
+.service-price strong {
+  font-size: 1.5rem;
+  color: #27ae60;
+}
+
+.service-price {
+  color: #5d6d7e;
+  font-size: 0.9rem;
+}
+
+/* Service Benefits */
+.service-benefits {
+  margin-bottom: 2rem;
+}
+
+.service-benefits h4 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.service-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-benefits li {
+  color: #5d6d7e;
+  padding: 0.4rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.service-benefits li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+/* Service Button */
+.service-button {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: auto;
+}
+
+.service-button:hover {
+  background: linear-gradient(135deg, #2980b9, #1c5a80);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+}
+
+.service-button:active {
+  transform: translateY(-1px);
+}
+
+/* Category Colors */
+.service-card.dental {
+  border-top-color: #9b59b6;
+}
+
+.service-card.dental .service-icon {
+  color: #9b59b6;
+}
+
+.service-card.cardiology {
+  border-top-color: #e74c3c;
+}
+
+.service-card.cardiology .service-icon {
+  color: #e74c3c;
+}
+
+.service-card.general {
+  border-top-color: #3498db;
+}
+
+.service-card.general .service-icon {
+  color: #3498db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .service-card {
+    padding: 1.5rem;
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .service-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .service-button {
+    padding: 0.9rem 1.5rem;
+  }
+}
