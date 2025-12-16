@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "@/styles/home/AboutSection.css";
 import { aboutApi } from "@/api/aboutApi";
 
-function AboutSection({ homeData }) {
+function AboutSection({ homeData, isFullPage = false }) {
   const [aboutData, setAboutData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,8 +29,14 @@ function AboutSection({ homeData }) {
   if (error) return <section className="about-section error">{error}</section>;
 
   return (
-    <section className="about-section">
-      <h2>About {aboutData.pageTitle || "Our Clinic"}</h2>
+    <section className={`about-section ${isFullPage ? 'full-page' : ''}`}>
+      {/* Different heading based on page */}
+      {isFullPage ? (
+        <h1>About {aboutData.pageTitle || "Our Clinic"}</h1>
+      ) : (
+        <h2>About {aboutData.pageTitle || "Our Clinic"}</h2>
+      )}
+      
       <p className="about-description">{aboutData.mainDescription}</p>
 
       <div className="about-cards">
@@ -44,7 +50,8 @@ function AboutSection({ homeData }) {
         </div>
       </div>
 
-      {homeData?.stats && (
+      {/* Show home stats only on home page */}
+      {!isFullPage && homeData?.stats && (
         <div className="about-stats">
           <h3>Our Achievements</h3>
           <div className="stats-grid">
@@ -60,6 +67,7 @@ function AboutSection({ homeData }) {
         </div>
       )}
 
+      {/* Values section - always show */}
       <div className="about-values">
         <h3>Our Values</h3>
         <ul>
@@ -68,6 +76,72 @@ function AboutSection({ homeData }) {
           ))}
         </ul>
       </div>
+
+      {/* ADDITIONAL CONTENT FOR FULL PAGE */}
+      {isFullPage && (
+        <>
+          {/* History section */}
+          {aboutData.history && (
+            <div className="about-history">
+              <h2>Our History</h2>
+              <p>{aboutData.history}</p>
+            </div>
+          )}
+
+          {/* Team section */}
+          {aboutData.team && aboutData.team.length > 0 && (
+            <div className="about-team">
+              <h2>Our Team</h2>
+              <div className="team-grid">
+                {aboutData.team.map((member, index) => (
+                  <div key={index} className="team-member">
+                    <div className="member-image">
+                      {member.imageUrl ? (
+                        <img 
+                          src={member.imageUrl} 
+                          alt={member.name}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "/images/default-doctor.jpg";
+                          }}
+                        />
+                      ) : (
+                        <div className="default-avatar">
+                          <i className="fas fa-user-md"></i>
+                        </div>
+                      )}
+                    </div>
+                    <div className="member-info">
+                      <h3>{member.name}</h3>
+                      <p className="position">{member.position}</p>
+                      <p className="qualification">{member.qualification}</p>
+                      <p className="experience">{member.experienceYears} years experience</p>
+                      <p className="bio">{member.bio}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Statistics section */}
+          {aboutData.statistics && (
+            <div className="about-statistics">
+              <h2>Clinic Statistics</h2>
+              <div className="statistics-grid">
+                {Object.entries(aboutData.statistics).map(([key, value], index) => (
+                  <div key={index} className="statistic-item">
+                    <div className="statistic-value">{value}</div>
+                    <div className="statistic-label">
+                      {key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </section>
   );
 }

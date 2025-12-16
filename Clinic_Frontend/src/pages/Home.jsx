@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import AboutSection from "@/components/home/AboutSection";
 import ServicesSection from "@/components/services/ServicesSection";
 import { homeApi } from "@/api/homeApi";
+import "@/styles/home/HomePage.css";
 
 function Home() {
   const [homeData, setHomeData] = useState(null);

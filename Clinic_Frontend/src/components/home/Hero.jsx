@@ -3,6 +3,7 @@ import "@/styles/home/Hero.css";
 
 function Hero({ title, description, imageUrl, buttonText, buttonLink }) {
   const defaultImage = "/images/banner.jpg"; 
+  
   return (
     <section className="hero">
       <div className="hero-content">
