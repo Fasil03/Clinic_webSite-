@@ -5,7 +5,7 @@ import logo from "@/assets/images/logo.png";
 
 function Header({ theme, toggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // ✅ ADD
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -18,38 +18,54 @@ function Header({ theme, toggleTheme }) {
 
   return (
     <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
-      <div className="logo">
-        <img src={logo} alt="Adebabay Clinic" />
-      </div>
+      <div className="header-container">
+        {/* Logo */}
+        <div className="logo">
+          <Link to="/" className="logo-link">
+            <img src={logo} alt="Adebabay Clinic" className="logo-img" />
+            <div className="logo-text">
+              <span className="logo-name">Adebabay</span>
+              <span className="logo-tagline">Medical Clinic</span>
+            </div>
+          </Link>
+        </div>
 
-      <nav className={menuOpen ? "nav open" : "nav"}>
-        <ul>
-          <li className={location.pathname === "/" ? "active" : ""}>
-            <Link to="/">Home</Link>
-          </li>
-          <li className={location.pathname === "/about" ? "active" : ""}>
-            <Link to="/about">About</Link>
-          </li>
-          <li className={location.pathname === "/services" ? "active" : ""}>
-            <Link to="/services">Services</Link>
-          </li>
-          <li className={location.pathname === "/activities" ? "active" : ""}>
-            <Link to="/activities">Activities</Link>
-          </li>
-          <li className={location.pathname === "/location" ? "active" : ""}>
-            <Link to="/location">Location</Link>
-          </li>
-          <li className={location.pathname === "/contact" ? "active" : ""}>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
+        {/* Navigation - Keeping your exact structure */}
+        <nav className={menuOpen ? "nav open" : "nav"}>
+          <ul className="nav-list">
+            <li className={location.pathname === "/" ? "active" : ""}>
+              <Link to="/">Home</Link>
+            </li>
+            <li className={location.pathname === "/about" ? "active" : ""}>
+              <Link to="/about">About</Link>
+            </li>
+            <li className={location.pathname === "/services" ? "active" : ""}>
+              <Link to="/services">Services</Link>
+            </li>
+            <li className={location.pathname === "/activities" ? "active" : ""}>
+              <Link to="/activities">Activities</Link>
+            </li>
+            <li className={location.pathname === "/location" ? "active" : ""}>
+              <Link to="/location">Location</Link>
+            </li>
+            <li className={location.pathname === "/contact" ? "active" : ""}>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </nav>
 
-      <div className="header-actions">
-        <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
-        <button className="theme-btn" onClick={toggleTheme}>
-          {theme === "light" ? "🌙" : "☀️"}
-        </button>
+        {/* Header Actions */}
+        <div className="header-actions">
+          {/* Theme Toggle */}
+          <button className="theme-btn" onClick={toggleTheme}>
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </div>
     </header>
   );
