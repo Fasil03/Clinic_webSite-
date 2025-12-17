@@ -1,24 +1,36 @@
 .activities-section {
-  padding: 2rem;
+  padding: 40px 0;
+}
+
+.activities-section h2 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 30px;
   text-align: center;
+}
+
+.no-activities {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 10px;
 }
 
 .activities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
 }
 
-.activity-card {
-  background: var(--bg);
-  color: var(--text);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.activity-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+@media (max-width: 768px) {
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .activities-section h2 {
+    font-size: 1.8rem;
+  }
 }

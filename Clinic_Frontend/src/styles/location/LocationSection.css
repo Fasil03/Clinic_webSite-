@@ -1,27 +1,313 @@
-import React from "react";
-import "@/styles/location/LocationSection.css";
-
-function LocationSection() {
-  return (
-    <section className="location-section">
-      <h2>Our Clinic Location</h2>
-      <p>Adebabay Clinic, 123 Health Street, Humera, Ethiopia</p>
-
-      {/* Embedded Google Map */}
-      <div className="map-container">
-        <iframe
-          title="Clinic Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.123456789!2d37.123456!3d14.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x123456789abcdef!2sAdebabay%20Clinic!5e0!3m2!1sen!2set!4v1234567890"
-          width="100%"
-          height="400"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      </div>
-    </section>
-  );
+.location-section {
+  padding: 40px 0;
 }
 
-export default LocationSection;
+/* Header */
+.location-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+}
+
+.location-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.clinic-name {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+.branch-name {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Main Content Layout */
+.location-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .location-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Map Container */
+.map-container {
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Location Info */
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Info Cards */
+.info-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Address Card */
+.address-card p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.address {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Contact Card */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.contact-icon {
+  color: #667eea;
+  font-size: 1.2rem;
+  min-width: 30px;
+}
+
+.contact-icon.emergency {
+  color: #e74c3c;
+}
+
+.contact-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.contact-value {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.contact-value:hover {
+  color: #667eea;
+}
+
+.contact-value.emergency {
+  color: #e74c3c;
+}
+
+.contact-value.emergency:hover {
+  color: #c0392b;
+}
+
+/* Working Hours */
+.hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hour-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.hour-item:last-child {
+  border-bottom: none;
+}
+
+.day {
+  color: #555;
+  font-weight: 500;
+}
+
+.time {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Facilities */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.facility-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.facility-item:hover {
+  background: #e8f4fd;
+  transform: translateY(-3px);
+}
+
+.facility-item svg,
+.pharmacy-icon,
+.ambulance-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #667eea;
+}
+
+.facility-item span {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.pharmacy-icon,
+.ambulance-icon {
+  font-size: 1.8rem;
+}
+
+/* Doctor Schedules */
+.doctors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.doctor-item {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.doctor-info h4 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.specialization {
+  color: #667eea;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.doctor-schedule {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.schedule-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #eee;
+}
+
+.schedule-day {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.schedule-time {
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Directions Button */
+.directions-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.directions-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+.directions-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .location-header h1 {
+    font-size: 2rem;
+  }
+  
+  .map-container {
+    height: 350px;
+  }
+  
+  .facilities-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  
+  .doctor-schedule {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .directions-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+}

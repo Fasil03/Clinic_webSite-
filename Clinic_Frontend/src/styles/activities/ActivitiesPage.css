@@ -1,0 +1,19 @@
+.activities-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.activities-page.loading,
+.activities-page.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 18px;
+  color: #666;
+}
+
+.activities-page.error {
+  color: #e74c3c;
+}

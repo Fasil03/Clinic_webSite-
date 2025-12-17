@@ -1,20 +1,27 @@
 import React from "react";
-import activities from "@/data/activities";
 import ActivityCard from "./ActivityCard";
 import "@/styles/activities/ActivitiesSection.css";
 
-function ActivitiesSection({ limit }) {
-  const list = limit ? activities.slice(0, limit) : activities;
+function ActivitiesSection({ activities, limit }) {
+  const displayActivities = limit ? activities.slice(0, limit) : activities;
+
+  if (!activities || activities.length === 0) {
+    return (
+      <section className="activities-section">
+        <h2>Our Activities</h2>
+        <p className="no-activities">No activities available at the moment.</p>
+      </section>
+    );
+  }
 
   return (
     <section className="activities-section">
       <h2>Our Activities</h2>
       <div className="activities-grid">
-        {list.map((activity) => (
+        {displayActivities.map((activity) => (
           <ActivityCard
             key={activity.id}
-            title={activity.title}
-            description={activity.description}
+            activity={activity}
           />
         ))}
       </div>
