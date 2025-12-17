@@ -7,7 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 @Component
@@ -24,6 +26,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private ServicesRepository servicesRepository;
+
+    @Autowired
+    private ActivitiesRepository activitiesRepository; // ADDED
 
     @Autowired
     private FooterRepository footerRepository;
@@ -63,6 +68,14 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Services data initialized");
         } else {
             System.out.println("Services data already exists");
+        }
+
+        // ADDED: Activities initialization
+        if (activitiesRepository.count() == 0) {
+            initializeActivitiesData();
+            System.out.println("Activities data initialized");
+        } else {
+            System.out.println("Activities data already exists");
         }
 
         if (footerRepository.count() == 0) {
@@ -224,6 +237,176 @@ public class DataInitializer implements CommandLineRunner {
         return service;
     }
 
+    // ADDED: Activities initialization method
+    private void initializeActivitiesData() {
+        List<Activity> activities = new ArrayList<>();
+
+        // Activity 1: Free Health Checkup Camp
+        Activity activity1 = new Activity();
+        activity1.setId(null);
+        activity1.setTitle("Free Health Checkup Camp");
+        activity1.setDescription("Join our free health camp for comprehensive health screenings including blood pressure, blood sugar, BMI checks, and basic health consultations. Our medical team will provide free consultations and personalized health advice.");
+        activity1.setShortDescription("Free health screenings and consultations for the community");
+        activity1.setImageUrl("/images/activities/health-camp.jpg");
+        activity1.setCategory("Health Camp");
+        activity1.setActivityDate(LocalDate.now().plusDays(5));
+        activity1.setStartTime(LocalTime.of(9, 0));
+        activity1.setEndTime(LocalTime.of(17, 0));
+        activity1.setLocation("Clinic Main Hall");
+        activity1.setAddress("123 Medical Street, Health City");
+        activity1.setRegistrationRequired(true);
+        activity1.setMaxParticipants(100);
+        activity1.setCurrentParticipants(35);
+        activity1.setRegistrationDeadline(LocalDate.now().plusDays(3));
+        activity1.setTags(Arrays.asList("Health", "Checkup", "Free", "Community"));
+        activity1.setOrganizer("HealthCare Clinic Community Team");
+        activity1.setContactEmail("community@healthcareclinic.com");
+        activity1.setContactPhone("+1 (234) 567-8920");
+        activity1.setActive(true);
+        activity1.setFeatured(true);
+        activity1.setCreatedAt(LocalDateTime.now());
+        activity1.setUpdatedAt(LocalDateTime.now());
+
+        // Activity 2: Diabetes Awareness Workshop
+        Activity activity2 = new Activity();
+        activity2.setId(null);
+        activity2.setTitle("Diabetes Awareness & Management Workshop");
+        activity2.setDescription("Learn about diabetes prevention, management, and healthy lifestyle choices from our expert nutritionists and endocrinologists. Includes practical tips, meal planning, and Q&A session.");
+        activity2.setShortDescription("Educational workshop on diabetes prevention and management");
+        activity2.setImageUrl("/images/activities/diabetes-workshop.jpg");
+        activity2.setCategory("Workshop");
+        activity2.setActivityDate(LocalDate.now().plusDays(12));
+        activity2.setStartTime(LocalTime.of(14, 0));
+        activity2.setEndTime(LocalTime.of(16, 30));
+        activity2.setLocation("Conference Room B");
+        activity2.setAddress("123 Medical Street, Health City");
+        activity2.setRegistrationRequired(true);
+        activity2.setMaxParticipants(50);
+        activity2.setCurrentParticipants(22);
+        activity2.setRegistrationDeadline(LocalDate.now().plusDays(10));
+        activity2.setTags(Arrays.asList("Diabetes", "Workshop", "Education", "Nutrition"));
+        activity2.setOrganizer("Dr. Emily Chen - Endocrinologist");
+        activity2.setContactEmail("workshops@healthcareclinic.com");
+        activity2.setContactPhone("+1 (234) 567-8921");
+        activity2.setActive(true);
+        activity2.setFeatured(true);
+        activity2.setCreatedAt(LocalDateTime.now());
+        activity2.setUpdatedAt(LocalDateTime.now());
+
+        // Activity 3: CPR & First Aid Training
+        Activity activity3 = new Activity();
+        activity3.setId(null);
+        activity3.setTitle("CPR & First Aid Training Certification");
+        activity3.setDescription("Essential life-saving skills training for community members. Learn CPR for adults and infants, choking relief, wound care, and basic emergency response. Certification provided upon completion.");
+        activity3.setShortDescription("Life-saving skills training with certification");
+        activity3.setImageUrl("/images/activities/cpr-training.jpg");
+        activity3.setCategory("Training");
+        activity3.setActivityDate(LocalDate.now().plusDays(20));
+        activity3.setStartTime(LocalTime.of(10, 0));
+        activity3.setEndTime(LocalTime.of(15, 0));
+        activity3.setLocation("Training Center");
+        activity3.setAddress("123 Medical Street, Health City");
+        activity3.setRegistrationRequired(true);
+        activity3.setMaxParticipants(30);
+        activity3.setCurrentParticipants(15);
+        activity3.setRegistrationDeadline(LocalDate.now().plusDays(18));
+        activity3.setTags(Arrays.asList("CPR", "First Aid", "Emergency", "Training", "Certification"));
+        activity3.setOrganizer("Emergency Response Training Team");
+        activity3.setContactEmail("training@healthcareclinic.com");
+        activity3.setContactPhone("+1 (234) 567-8922");
+        activity3.setActive(true);
+        activity3.setFeatured(true);
+        activity3.setCreatedAt(LocalDateTime.now());
+        activity3.setUpdatedAt(LocalDateTime.now());
+
+        // Activity 4: Cancer Awareness Seminar
+        Activity activity4 = new Activity();
+        activity4.setId(null);
+        activity4.setTitle("Cancer Awareness & Prevention Seminar");
+        activity4.setDescription("Expert talk on cancer prevention, early detection signs, screening options, and healthy living to reduce cancer risks. Featuring oncology specialists and survivor stories.");
+        activity4.setShortDescription("Expert insights on cancer prevention and early detection");
+        activity4.setImageUrl("/images/activities/cancer-seminar.jpg");
+        activity4.setCategory("Seminar");
+        activity4.setActivityDate(LocalDate.now().plusDays(25));
+        activity4.setStartTime(LocalTime.of(18, 0));
+        activity4.setEndTime(LocalTime.of(20, 0));
+        activity4.setLocation("Main Auditorium");
+        activity4.setAddress("123 Medical Street, Health City");
+        activity4.setRegistrationRequired(false);
+        activity4.setMaxParticipants(80);
+        activity4.setCurrentParticipants(0);
+        activity4.setRegistrationDeadline(null);
+        activity4.setTags(Arrays.asList("Cancer", "Awareness", "Prevention", "Seminar", "Oncology"));
+        activity4.setOrganizer("Oncology Department");
+        activity4.setContactEmail("oncology@healthcareclinic.com");
+        activity4.setContactPhone("+1 (234) 567-8923");
+        activity4.setActive(true);
+        activity4.setFeatured(false);
+        activity4.setCreatedAt(LocalDateTime.now());
+        activity4.setUpdatedAt(LocalDateTime.now());
+
+        // Activity 5: Blood Donation Drive
+        Activity activity5 = new Activity();
+        activity5.setId(null);
+        activity5.setTitle("Annual Blood Donation Drive");
+        activity5.setDescription("Participate in our life-saving blood donation drive. All donors receive a free basic health checkup, refreshments, and a donor certificate. Your donation can save up to 3 lives.");
+        activity5.setShortDescription("Community blood donation drive to support local hospitals");
+        activity5.setImageUrl("/images/activities/blood-donation.jpg");
+        activity5.setCategory("Campaign");
+        activity5.setActivityDate(LocalDate.now().plusDays(30));
+        activity5.setStartTime(LocalTime.of(8, 0));
+        activity5.setEndTime(LocalTime.of(18, 0));
+        activity5.setLocation("Blood Donation Center");
+        activity5.setAddress("123 Medical Street, Health City");
+        activity5.setRegistrationRequired(true);
+        activity5.setMaxParticipants(200);
+        activity5.setCurrentParticipants(68);
+        activity5.setRegistrationDeadline(LocalDate.now().plusDays(28));
+        activity5.setTags(Arrays.asList("Blood Donation", "Community", "Health", "Campaign", "Life-saving"));
+        activity5.setOrganizer("Blood Bank & Community Services");
+        activity5.setContactEmail("bloodbank@healthcareclinic.com");
+        activity5.setContactPhone("+1 (234) 567-8924");
+        activity5.setActive(true);
+        activity5.setFeatured(true);
+        activity5.setCreatedAt(LocalDateTime.now());
+        activity5.setUpdatedAt(LocalDateTime.now());
+
+        // Activity 6: Mental Health Support Group
+        Activity activity6 = new Activity();
+        activity6.setId(null);
+        activity6.setTitle("Mental Health Support Group Meeting");
+        activity6.setDescription("Weekly support group for individuals dealing with anxiety, depression, and stress. Facilitated by licensed therapists in a safe and confidential environment.");
+        activity6.setShortDescription("Weekly support group for mental wellness");
+        activity6.setImageUrl("/images/activities/mental-health.jpg");
+        activity6.setCategory("Support Group");
+        activity6.setActivityDate(LocalDate.now().plusDays(7));
+        activity6.setStartTime(LocalTime.of(17, 0));
+        activity6.setEndTime(LocalTime.of(18, 30));
+        activity6.setLocation("Therapy Room 3");
+        activity6.setAddress("123 Medical Street, Health City");
+        activity6.setRegistrationRequired(true);
+        activity6.setMaxParticipants(15);
+        activity6.setCurrentParticipants(8);
+        activity6.setRegistrationDeadline(LocalDate.now().plusDays(5));
+        activity6.setTags(Arrays.asList("Mental Health", "Support Group", "Wellness", "Therapy"));
+        activity6.setOrganizer("Dr. Michael Brown - Psychologist");
+        activity6.setContactEmail("mentalhealth@healthcareclinic.com");
+        activity6.setContactPhone("+1 (234) 567-8925");
+        activity6.setActive(true);
+        activity6.setFeatured(false);
+        activity6.setCreatedAt(LocalDateTime.now());
+        activity6.setUpdatedAt(LocalDateTime.now());
+
+        activities.add(activity1);
+        activities.add(activity2);
+        activities.add(activity3);
+        activities.add(activity4);
+        activities.add(activity5);
+        activities.add(activity6);
+
+        activitiesRepository.saveAll(activities);
+    }
+
     private void initializeFooterData() {
         Footer footer = new Footer();
         footer.setId(null); // Will be auto-generated by MongoDB
@@ -238,11 +421,18 @@ public class DataInitializer implements CommandLineRunner {
         quickLinks.add(new Footer.Link("Home", "/", "_self"));
         quickLinks.add(new Footer.Link("About Us", "/about", "_self"));
         quickLinks.add(new Footer.Link("Services", "/services", "_self"));
+        quickLinks.add(new Footer.Link("Activities", "/activities", "_self"));
+        quickLinks.add(new Footer.Link("Location", "/location", "_self"));
         quickLinks.add(new Footer.Link("Contact", "/contact", "_self"));
         footer.setQuickLinks(quickLinks);
 
-        // Create service links (same as quick links for now)
-        footer.setServiceLinks(quickLinks);
+        // Create service links
+        List<Footer.Link> serviceLinks = new ArrayList<>();
+        serviceLinks.add(new Footer.Link("General Consultation", "/services", "_self"));
+        serviceLinks.add(new Footer.Link("Cardiology", "/services", "_self"));
+        serviceLinks.add(new Footer.Link("Pediatrics", "/services", "_self"));
+        serviceLinks.add(new Footer.Link("Dental Care", "/services", "_self"));
+        footer.setServiceLinks(serviceLinks);
 
         // Create social links
         List<Footer.SocialLink> socialLinks = new ArrayList<>();
@@ -257,6 +447,7 @@ public class DataInitializer implements CommandLineRunner {
         legalLinks.add(new Footer.Link("Privacy Policy", "/privacy", "_self"));
         legalLinks.add(new Footer.Link("Terms of Service", "/terms", "_self"));
         legalLinks.add(new Footer.Link("Cookie Policy", "/cookies", "_self"));
+        legalLinks.add(new Footer.Link("Accessibility", "/accessibility", "_self"));
         footer.setLegalLinks(legalLinks);
 
         footer.setCopyrightText("© 2024 HealthCare Clinic. All rights reserved.");
